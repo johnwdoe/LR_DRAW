@@ -88,7 +88,7 @@ void processCommand(char* strCmd)
 		{
 			//home
 			pen_set(0);
-			//home();
+			move(0, 0);
 		}
 	}
 }
