@@ -31,6 +31,11 @@ void move (uint16_t x, uint16_t y)
 	while (stepper_do(&dl) | stepper_do(&dr));
 }
 
+void move_mm(double x, double y)
+{
+	move(x/LR_STEP_MM, y/LR_STEP_MM);
+}
+
 void moveDirect(uint16_t x, uint16_t y)
 {
 	uint16_t xc = lastPos.x;
@@ -58,6 +63,12 @@ void moveDirect(uint16_t x, uint16_t y)
 	}
 	move(x, y);
 }
+
+void moveDirect_mm(double x, double y)
+{
+	moveDirect(x/LR_STEP_MM, y/LR_STEP_MM);
+}
+
 point getPosition(void)
 {
 	return lastPos;

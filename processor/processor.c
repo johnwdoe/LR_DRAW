@@ -62,22 +62,22 @@ void processCommand(char* strCmd)
 				case (F_HAS_X | F_HAS_Y):
 					if (cmd.nOpCode == 1)
 					{
-						moveDirect(cmd.x/LR_STEP_MM, cmd.y/LR_STEP_MM);
+						moveDirect_mm(cmd.x, cmd.y);
 					}
 					else
 					{
-						move(cmd.x/LR_STEP_MM, cmd.y/LR_STEP_MM);
+						move_mm(cmd.x, cmd.y);
 					}
 					break;
 				case (F_HAS_X | F_HAS_Y | F_HAS_Z):
 					pen_set((cmd.z < 0) ? 1 : 0);
 					if (cmd.nOpCode == 1)
 					{
-						moveDirect(cmd.x/LR_STEP_MM, cmd.y/LR_STEP_MM);
+						moveDirect_mm(cmd.x, cmd.y);
 					}
 					else
 					{
-						move(cmd.x/LR_STEP_MM, cmd.y/LR_STEP_MM);
+						move_mm(cmd.x, cmd.y);
 					}
 					break;
 				case (F_HAS_Z):
