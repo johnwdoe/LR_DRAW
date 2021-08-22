@@ -24,6 +24,7 @@ typedef struct {
 
 void control_init(void);
 void set_lr(uint16_t l, uint16_t r);
+void moveAbs (uint16_t x, uint16_t y);
 void move (uint16_t x, uint16_t y);
 void moveDirect(uint16_t x, uint16_t y);
 void move_mm(double x, double y);

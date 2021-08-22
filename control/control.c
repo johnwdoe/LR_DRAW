@@ -20,11 +20,8 @@ void control_init(void)
 	DDRD |= (1<<PD4 | 1<<PD5 | 1<<PD6 | 1<<PD7); // SL, DL, SR, DR
 }
 
-void move (uint16_t x, uint16_t y)
+void moveAbs (uint16_t x, uint16_t y)
 {
-	//fix machine coords
-	x += localPosOffset.x;
-	y += localPosOffset.y;
 	//convert x,y to l,r (all in steps)
 	dl.dstPos = slow_sqrt(slow_pwr2(x) + slow_pwr2(y));
 	dr.dstPos = slow_sqrt(slow_pwr2(D1_STEPS - D2_STEPS - x) + slow_pwr2(y));
@@ -33,6 +30,11 @@ void move (uint16_t x, uint16_t y)
 	machPos.y = y;
 	//waiting for completion
 	while (stepper_do(&dl) | stepper_do(&dr));
+}
+
+void move (uint16_t x, uint16_t y)
+{
+	moveAbs(x + localPosOffset.x, y + localPosOffset.y);
 }
 
 void move_mm(double x, double y)
@@ -56,7 +58,7 @@ void moveDirect(uint16_t x, uint16_t y)
 
 	while(xc != x || yc != y)
 	{
-		move(xc, yc);
+		moveAbs(xc, yc);
 		int16_t er2 = er * 2;
 		if(er2 > -deltaY)
 		{
@@ -69,7 +71,7 @@ void moveDirect(uint16_t x, uint16_t y)
 			yc += signY;
 		}
 	}
-	move(x, y);
+	moveAbs(x, y);
 }
 
 void moveDirect_mm(double x, double y)
