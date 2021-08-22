@@ -89,6 +89,15 @@ void processCommand(char* strCmd)
 			//home
 			pen_set(0);
 			move(0, 0);
+		} else if (cmd.nOpCode == 92)
+		{
+			//set local coords.
+			point p = getPosition(); //machine coordinates by default
+			//but if x or y is set:
+			if (cmd.fl & F_HAS_X) p.x = cmd.x/LR_STEP_MM;
+			if (cmd.fl & F_HAS_Y) p.y = cmd.y/LR_STEP_MM;
+			//finally set local
+			setLocalPos(p);
 		}
 	}
 }

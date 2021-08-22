@@ -17,7 +17,7 @@ int main(void)
 	pen_init();
 	control_init();
 	//home();
-	set_lr(229/LR_STEP_MM,227/LR_STEP_MM);
+	set_lr(229/LR_STEP_MM,227/LR_STEP_MM); //TODO think about this hardcode!
 	printf("Ready ...\r\n");
 	char strBuf[100];
 	while(1)

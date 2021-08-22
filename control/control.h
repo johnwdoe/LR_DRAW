@@ -29,5 +29,6 @@ void moveDirect(uint16_t x, uint16_t y);
 void move_mm(double x, double y);
 void moveDirect_mm(double x, double y);
 point getPosition(void);
+void setLocalPos(point p);
 
 #endif /* CONTROL_H_ */

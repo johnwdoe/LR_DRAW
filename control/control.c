@@ -82,6 +82,11 @@ point getPosition(void)
 	return machPos;
 }
 
+void setLocalPos(point p)
+{
+	localPosOffset = p;
+}
+
 void set_lr(uint16_t l, uint16_t r)
 {
 	dl.curPos = l;
